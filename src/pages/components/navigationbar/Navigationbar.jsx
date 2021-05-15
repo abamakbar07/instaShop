@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Container, Navbar } from 'react-bootstrap'
+import './navigationbar.css'
 
 const Navigationbar = () => {
   const [login, setLogin] = useState(false)
   return (
-    <Container>
+    <Container className="NavigationBar">
       <Navbar>
         <Navbar.Brand href="#home">INSTASHOP</Navbar.Brand>
         <Navbar.Toggle />
