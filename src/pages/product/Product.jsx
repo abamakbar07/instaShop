@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { instagramAPI } from '../../config/api'
 import ProductCard from '../components/productcard/ProductCard'
 
 const Product = () => {
+   const [data, setData] = useState(null)
+   const getData = async () => {
+      try {
+         const param = {
+            params : {
+               fields: "id,caption",
+               access_token:
+                 "IGQVJWYzBqX2M1YU9KTnpjZAm9nbDRMLVVJTVhHNnQ2TEkzeTdxUFJHa2ItODNTWlNnMW5tdUs4WUxJZAjl6N2YxYXFQSVVYbDlJVFNhXzFPYThkdTBLWG9tenNacjRpVk52SmVnbXJkRTgyT2MxQ3FfNQZDZD",
+               }
+            };
+         const result = await instagramAPI.get('/me/media', param)
+         console.log(result)
+      } catch (error) {
+         console.log(data)
+      }
+   }
+
+   useEffect(() => {
+      getData()
+   }, [])
+   
    return (
      <Container className="Product bg-danger">
        <Row>
