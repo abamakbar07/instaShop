@@ -16,3 +16,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
 }
+
+.ProductCard .card {
+   width: auto !important;
+   margin: 20px 0px;
+}
