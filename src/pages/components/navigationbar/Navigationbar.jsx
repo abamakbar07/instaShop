@@ -10,7 +10,7 @@ const Navigationbar = () => {
     <Container className="NavigationBar">
       <Navbar>
         <div onClick={() => history.push('/')}>
-          <Navbar.Brand href="#home">INSTASHOP</Navbar.Brand>
+          <Navbar.Brand>INSTASHOP</Navbar.Brand>
         </div>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
