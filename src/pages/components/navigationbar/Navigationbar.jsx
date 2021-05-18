@@ -12,7 +12,7 @@ const Navigationbar = () => {
         <Navbar.Collapse className="justify-content-end">
           {login ? (
           <Navbar.Text onClick={() => setLogin(!login)}>
-            Signed in as: <a>Mark Otto</a>
+            Signed in as: <span>Mark Otto</span>
           </Navbar.Text>
             ) : (
               <Button varian="primary" onClick={() => setLogin(!login)}>LOGIN</Button>

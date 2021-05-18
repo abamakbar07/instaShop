@@ -5,7 +5,13 @@ import ProductCard from '../components/productcard/ProductCard'
 
 const Product = () => {
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({
+    id: "",
+    caption: "",
+    media_type: "",
+    media_url: "",
+    thumbnail_url: ""
+  })
   const getData = async () => {
     try {
         const param = {
@@ -35,19 +41,24 @@ const Product = () => {
         </Col>
         <Col md={10} className="bg-dark">
           <CardColumns>
-          {loading ? (
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          ) : (
-            data.map((post) => (
-              <ProductCard
-                media_type={post.media_type}
-                img={post.media_type == "VIDIO" ? post.thumbnail_url : post.media_url}
-                title={post.id}
-                desc={post.caption}
+            {loading ? (
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            ) : (
+              data.map(post => 
+                <ProductCard
+                  key={post.id}
+                  media_type={post.media_type}
+                  img={
+                    post.media_type === "VIDEO"
+                      ? post.thumbnail_url
+                      : post.media_url
+                  }
+                  title={post.id}
+                  desc={post.caption}
                 />
-              ))
+              )
             )}
           </CardColumns>
         </Col>
