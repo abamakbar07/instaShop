@@ -12,8 +12,11 @@ require('dotenv').config()
 const app = express()
 const router = require('./src/routes/routes')
 
-const port = process.env.PORT || 5000
-// const port = 3000
+// set port for deploy to heroku
+// const port = process.env.PORT || 5000
+
+// set port for local developing
+const port = 3000
 
 app.use(cors())
 app.use(bodyParser.json())

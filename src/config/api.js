@@ -5,5 +5,11 @@ export const instagramAPI = axios.create({
 });
 
 export const API = axios.create({
-  baseURL: "/api/v1/",
+  
+// base url for deploy to heroku
+  // baseURL: "/api/v1/",
+
+// base url for local developing
+  baseURL: "http://localhost:3000/api/v1/",
+
 });
