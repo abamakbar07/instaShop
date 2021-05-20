@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { API } from '../../config/api'
+import "./dashboard.css"
+import HeaderDashboard from './views/HeaderDashboard'
+import BestProductsDashboard from './views/BestProductsDashboard'
 
 const Dashboard = () => {
    const [data, setData] = useState({})
@@ -19,11 +22,8 @@ const Dashboard = () => {
 
    return (
      <div className="Dashboard">
-        DASHBOARD
-        <button onClick={getData}>Get produk</button>
-        <div>
-           {JSON.stringify(data)}
-        </div>
+        <HeaderDashboard />
+        <BestProductsDashboard />
      </div>
    );
 }

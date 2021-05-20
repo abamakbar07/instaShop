@@ -1,0 +1,10 @@
+.HeaderDashboard img {
+   width: auto;
+   height: 450px;
+}
+
+@media only screen and (max-width: 600px) {
+   .HeaderDashboard img {
+      height: 250px;
+   }
+}
