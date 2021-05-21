@@ -1,6 +1,20 @@
-.HeaderDashboard img {
-   width: auto;
-   height: 450px;
+.HeaderDashboard {
+   padding: 48px 0px;
+   height: auto;
+}
+
+.HeaderDashboard .header.title {
+   font-weight: 800;
+   font-size: 64px;
+   font-style: normal;
+   line-height: normal;
+}
+
+.HeaderDashboard .header.desc {
+   font-size: 18px;
+   font-weight: 600;
+   padding-top: 24px;
+   padding-bottom: 24px;
 }
 
 @media only screen and (max-width: 600px) {

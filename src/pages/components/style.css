@@ -1,0 +1,20 @@
+.primary.btn {
+   background: var(--pinky);
+   border: solid 2px var(--pinky);
+   transition: .2s;
+}
+.primary.btn:hover {
+   background: var(--bg);
+   border: solid 2px var(--pinky);
+}
+
+.secondary.btn {
+   background: var(--bg);
+   border: solid 2px var(--pinky);
+   transition: .2s;
+}
+
+.secondary.btn:hover {
+   background: var(--pinky);
+   border: solid 2px var(--pinky);
+}

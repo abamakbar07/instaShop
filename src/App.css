@@ -1,0 +1,22 @@
+:root {
+   --bg: #f9f3f3;
+   --primary: #dddddd;
+   --secondary: #f7d9d9;
+   --pinky: #f25287;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&family=Roboto:wght@300&display=swap');
+
+.App {
+   font-family: 'Roboto', sans-serif;
+   background: var(--bg);
+   background-image: url('/src/assets/header.png');
+   background-position-x: right;
+   background-position-y: top;
+   background-repeat: no-repeat;
+   overflow-x: hidden;
+}
+
+.title {
+   font-family: 'Roboto Slab', serif;
+}

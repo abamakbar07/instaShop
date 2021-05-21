@@ -1,17 +1,17 @@
-.title {
+.ProductCard .title {
    white-space: nowrap; 
    width: 100%; 
    overflow: hidden;
    text-overflow: ellipsis;
 }
 
-.desc {
+.ProductCard .desc {
    width: 100%;
    margin: 0 0 1em 0;
    overflow: hidden;
 }
 
-.line-clamp {
+.ProductCard .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
