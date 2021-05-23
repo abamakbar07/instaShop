@@ -13,18 +13,21 @@
 }
 
 .BestProductsCard .card-img-overlay {
-   background-color: rgba(0, 0, 0, 0.5);
    padding: 0;
    top: unset;
 }
 .BestProductsCard .card-img-overlay {
    max-height: 0px;
-   color: transparent;
    transition: .5s;
 }
 
 .BestProductsCard:hover .card-img-overlay {
    cursor: pointer;
    max-height: 350px;
-   color: white;
+   color: black;
 }
+
+.BestProductsCard .card-body {
+   background-color: var(--primary);
+}
+
