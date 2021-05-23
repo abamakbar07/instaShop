@@ -2,6 +2,10 @@
    overflow: hidden;
 }
 
+.BestProductsCard:hover {
+   cursor: pointer;
+}
+
 .BestProductsCard .card img {
   transition: transform .5s, filter .5s ease-in-out;
   filter: blur(0);
@@ -22,7 +26,6 @@
 }
 
 .BestProductsCard:hover .card-img-overlay {
-   cursor: pointer;
    max-height: 350px;
    color: black;
 }
