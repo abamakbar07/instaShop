@@ -17,8 +17,25 @@
    padding-bottom: 12px;
 }
 
+
+
 @media only screen and (max-width: 600px) {
    .HeaderDashboard img {
       height: 250px;
    }
+}
+
+.BestProductsDashboard .Border {
+   background-color: var(--bg);
+   box-shadow: 0px 8px 10px var(--primary);
+   margin: 0px 10vw 50px 10vw;
+   border: solid 2px var(--pinky);
+   border-radius: 10px;
+}
+
+.BestProductsDashboard .title {
+   font-weight: 800;
+   font-size: 24px;
+   font-style: normal;
+   line-height: normal;
 }
