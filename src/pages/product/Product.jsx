@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { CardColumns, Col, Container, Row, Spinner } from 'react-bootstrap'
 import { instagramAPI } from '../../config/api'
 import ProductCard from '../components/productcard/ProductCard'
+import './product.css'
+import ReactPaginate from 'react-paginate'
 
 const Product = () => {
+  const [refresh, setRefresh] = useState(0)
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState({
-    id: "",
-    caption: "",
-    media_type: "",
-    media_url: "",
-    thumbnail_url: ""
-  })
+  const [state, setState] = useState({
+    offset: 0,
+    tableData: [],
+    orgtableData: [],
+    perPage: 3,
+    currentPage: 0,
+  });
+
   const getData = async () => {
     try {
         const param = {
@@ -22,33 +26,83 @@ const Product = () => {
           },
         };
         const result = await instagramAPI.get('/me/media', param)
-        setData(result.data.data)
+        const data = result.data.data
+        var slice = data.slice(state.offset, state.offset + state.perPage);
+        
+        setState({
+          ...state,
+          pageCount: Math.ceil(data.length / state.perPage),
+          orgtableData: data,
+          tableData: slice,
+        });
         setLoading(false)
+        
     } catch (error) {
         console.log(error)
     }
   }
 
-  useEffect(() => {
-    getData()
-  }, [])
+  const loadMoreData = () => {
+    const data = state.orgtableData;
+
+    const slice = data.slice(state.offset, state.offset + state.perPage);
+
+    setState({
+      ...state,
+      pageCount: Math.ceil(data.length / state.perPage),
+      tableData: slice,
+    });
+  }
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * state.perPage;
+
+    setState({
+      ...state,
+      currentPage: selectedPage,
+      offset: offset,
+    });
+
+    setRefresh(refresh + 1);
+  }
+
+  useEffect(() => getData(), [])
+
+  useEffect(() => loadMoreData(), [refresh])
   
   return (
-    <Container className="Product bg-danger">
+    <Container className="Product">
       <Row>
-        <Col md={2} className="bg-light">
-          Filter
+        {/* <Col md={2} className="filter">
+          <div>Filter</div>
         </Col>
-        <Col md={10} className="bg-dark">
-          <CardColumns>
-            {loading ? (
+        <Col md={10} className="content"> */}
+        <Col className="content">
+          <ReactPaginate
+            previousLabel={"←"}
+            nextLabel={"→"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={(e) => handlePageClick(e)}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+          />
+          {loading ? (
+            <div className="text-center">
               <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>
               </Spinner>
-            ) : (
-              data.map(post => 
+            </div>
+          ) : (
+            <CardColumns>
+              {state.tableData.map((post) => (
                 <ProductCard
-                  key={post.id}
+                key={post.id}
                   media_type={post.media_type}
                   img={
                     post.media_type === "VIDEO"
@@ -57,10 +111,10 @@ const Product = () => {
                   }
                   title={post.id}
                   desc={post.caption}
-                />
-              )
-            )}
-          </CardColumns>
+                  />
+              ))}
+            </CardColumns>
+          )}
         </Col>
       </Row>
     </Container>
