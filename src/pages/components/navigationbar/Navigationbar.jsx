@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Container, Navbar } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { ProductContext } from '../../../components/context/ProductContext'
 import { ButtonPrimary } from '../Button'
 import './navigationbar.css'
 
 const Navigationbar = () => {
   const history = useHistory()
   const [login, setLogin] = useState(false)
+  const [product] = useContext(ProductContext)
+  console.log(product)
   return (
     <div className="bg-transparent">
       <Container className="NavigationBar">
