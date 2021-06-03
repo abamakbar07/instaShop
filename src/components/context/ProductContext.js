@@ -3,15 +3,23 @@ import { createContext, useReducer } from "react";
 export const ProductContext = createContext();
 
 const initialState = {
-  data: {},
+  pagination: {
+    offset: 0,
+    tableData: [],
+    orgtableData: [],
+    perPage: 3,
+    currentPage: 0,
+  },
+  products: [],
+  productDetail: {},
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "PRODUCT":
+    case "SET_PRODUCT_DETAIL":
       return {
         ...state,
-        data: action.payload.data
+        productDetail: action.payload.productDetail
       };
     default:
       throw new Error();

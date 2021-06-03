@@ -5,7 +5,7 @@ import HeaderDashboard from './views/HeaderDashboard'
 import BestProductsDashboard from './views/BestProductsDashboard'
 
 const Dashboard = () => {
-
+   
    return (
      <div className="Dashboard">
         <HeaderDashboard />

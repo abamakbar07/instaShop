@@ -30,9 +30,9 @@ const ProductCard = (props) => {
 
   const onClick = (data) => {
     dispatchProduct({
-      type: "PRODUCT",
+      type: "SET_PRODUCT_DETAIL",
       payload: {
-        data: state
+        productDetail: state
       },
     })
     history.push(`/product/${state.id}`)
