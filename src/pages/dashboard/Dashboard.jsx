@@ -4,36 +4,46 @@ import "./dashboard.css"
 import HeaderDashboard from './views/HeaderDashboard'
 import BestProductsDashboard from './views/BestProductsDashboard'
 import { ProductContext } from '../../components/context/ProductContext'
+import { GetDataProduct } from '../../config/functions/product'
 
 const Dashboard = () => {
    const [product, dispatchProduct] = useContext(ProductContext)
 
-   const getData = async () => {
-      try {
-         const param = {
-            params: {
-               fields: "id,media_type,caption,media_url,thumbnail_url",
-               access_token:
-               "IGQVJWYzBqX2M1YU9KTnpjZAm9nbDRMLVVJTVhHNnQ2TEkzeTdxUFJHa2ItODNTWlNnMW5tdUs4WUxJZAjl6N2YxYXFQSVVYbDlJVFNhXzFPYThkdTBLWG9tenNacjRpVk52SmVnbXJkRTgyT2MxQ3FfNQZDZD",
-            },
-         };
-         const result = await instagramAPI.get('/me/media', param)
-         const data = result.data.data
+   // const getData = async () => {
+   //    try {
+   //       const param = {
+   //          params: {
+   //             fields: "id,media_type,caption,media_url,thumbnail_url",
+   //             access_token:
+   //             "IGQVJWYzBqX2M1YU9KTnpjZAm9nbDRMLVVJTVhHNnQ2TEkzeTdxUFJHa2ItODNTWlNnMW5tdUs4WUxJZAjl6N2YxYXFQSVVYbDlJVFNhXzFPYThkdTBLWG9tenNacjRpVk52SmVnbXJkRTgyT2MxQ3FfNQZDZD",
+   //          },
+   //       };
+   //       const result = await instagramAPI.get('/me/media', param)
+   //       const data = result.data.data
          
-         dispatchProduct({
-            type: "GET_PRODUCTS",
-            payload: {
-               data,
-            }
+   //       dispatchProduct({
+   //          type: "GET_PRODUCTS",
+   //          payload: {
+   //             data,
+   //          }
+   //       })
+   
+   //    } catch (error) {
+      //       console.log(error)
+      //    }
+      // }
+      
+      useEffect(() => {
+         // getData()
+         GetDataProduct().then((data) => {
+            dispatchProduct({
+               type: "GET_PRODUCTS",
+               payload: {
+                  data,
+               }
+            })
          })
-         
-      } catch (error) {
-         console.log(error)
-      }
-   }
 
-   useEffect(() => {
-      getData()
       if (product.productDetail) {
          dispatchProduct({
             type: "CLEAR_PRODUCT_DETAIL",

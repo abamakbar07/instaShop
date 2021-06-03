@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { CardColumns, Col, Container, Row, Spinner } from 'react-bootstrap'
-import { instagramAPI } from '../../config/api'
 import ProductCard from '../components/productcard/ProductCard'
 import './product.css'
 import ReactPaginate from 'react-paginate'
+import { ProductContext } from '../../components/context/ProductContext'
+import { GetDataProduct } from '../../config/functions/product'
 
 const Product = () => {
+  const [product, dispatchProduct] = useContext(ProductContext)
   const [refresh, setRefresh] = useState(0)
   const [loading, setLoading] = useState(true)
   const [state, setState] = useState({
@@ -18,24 +20,18 @@ const Product = () => {
 
   const getData = async () => {
     try {
-        const param = {
-          params: {
-            fields: "id,media_type,caption,media_url,thumbnail_url",
-            access_token:
-              "IGQVJWYzBqX2M1YU9KTnpjZAm9nbDRMLVVJTVhHNnQ2TEkzeTdxUFJHa2ItODNTWlNnMW5tdUs4WUxJZAjl6N2YxYXFQSVVYbDlJVFNhXzFPYThkdTBLWG9tenNacjRpVk52SmVnbXJkRTgyT2MxQ3FfNQZDZD",
-          },
-        };
-        const result = await instagramAPI.get('/me/media', param)
-        const data = result.data.data
-        var slice = data.slice(state.offset, state.offset + state.perPage);
-        
-        setState({
-          ...state,
-          pageCount: Math.ceil(data.length / state.perPage),
-          orgtableData: data,
-          tableData: slice,
-        });
-        setLoading(false)
+      const data = await product.products
+
+      var slice = data.slice(state.offset, state.offset + state.perPage);
+      
+      setState({
+        ...state,
+        pageCount: Math.ceil(data.length / state.perPage),
+        orgtableData: data,
+        tableData: slice,
+      });
+
+      setLoading(false)
         
     } catch (error) {
         console.log(error)
@@ -67,7 +63,18 @@ const Product = () => {
     setRefresh(refresh + 1);
   }
 
-  useEffect(() => getData(), [])
+  useEffect(() => {
+    GetDataProduct().then((data) => {
+      dispatchProduct({
+          type: "GET_PRODUCTS",
+          payload: {
+            data,
+          }
+      })
+    })
+  }, [])
+
+  useEffect(() => getData(), [product])
 
   useEffect(() => loadMoreData(), [refresh])
   
