@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-export const ProductDetailContext = createContext();
+export const ProductContext = createContext();
 
 const initialState = {
   data: {},
@@ -18,12 +18,12 @@ const reducer = (state, action) => {
   }
 };
 
-export const ProductDetailContextProvider = ({ children }) => {
+export const ProductContextProvider = ({ children }) => {
   const [product, dispatchProduct] = useReducer(reducer, initialState);
 
   return (
-    <ProductDetailContext.Provider value={[product, dispatchProduct]}>
+    <ProductContext.Provider value={[product, dispatchProduct]}>
       {children}
-    </ProductDetailContext.Provider>
+    </ProductContext.Provider>
   );
 };

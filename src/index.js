@@ -4,13 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import App from './App';
 import { AppContextProvider } from './components/context/GlobalContext';
-import { ProductDetailContextProvider } from './components/context/ProductDetailContext';
+import { ProductContextProvider } from './components/context/ProductContext';
 
 ReactDOM.render(
   <AppContextProvider>
-    <ProductDetailContextProvider>
+    <ProductContextProvider>
       <App />
-    </ProductDetailContextProvider>
+    </ProductContextProvider>
   </AppContextProvider>,
   document.getElementById('root')
 );

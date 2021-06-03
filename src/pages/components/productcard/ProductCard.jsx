@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import { ProductDetailContext } from '../../../components/context/ProductDetailContext'
+import { ProductContext } from '../../../components/context/ProductContext'
 import './productcard.css'
 
 const ProductCard = (props) => {
   const history = useHistory()
-  const [product, dispatchProduct] = useContext(ProductDetailContext)
+  const [product, dispatchProduct] = useContext(ProductContext)
   const [state, setState] = useState({
     id: props.id,
     name: "",
