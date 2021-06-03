@@ -77,8 +77,8 @@ const Product = () => {
         {/* <Col md={2} className="filter">
           <div>Filter</div>
         </Col>
-        <Col md={10} className="content"> */}
-        <Col className="content">
+        <Col md={10} className="content"> // uncoment if want to use filter tab*/}
+        <Col className="content"> {/*  // if do not want to use filter tab */}
           <ReactPaginate
             previousLabel={"←"}
             nextLabel={"→"}
