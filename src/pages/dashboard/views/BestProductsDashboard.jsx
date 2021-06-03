@@ -5,7 +5,8 @@ import best1 from '../../../assets/4.png'
 import best2 from '../../../assets/7.png'
 
 
-const BestProductsDashboard = () => {
+const BestProductsDashboard = (props) => {
+  const products = props.products
   return (
     <div className="BestProductsDashboard">
       <div className="Border">
