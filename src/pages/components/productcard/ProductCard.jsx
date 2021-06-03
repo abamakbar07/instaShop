@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { ProductDetailContext } from '../../../components/context/ProductDetailContext'
 import './productcard.css'
 
 const ProductCard = (props) => {
+  const history = useHistory()
+  const [product, dispatchProduct] = useContext(ProductDetailContext)
   const [state, setState] = useState({
+    id: props.id,
     name: "",
     size: "",
     variant: "",
@@ -23,7 +28,15 @@ const ProductCard = (props) => {
     return x.substring(x.search(" ")).slice(1, -1);
   }
 
-  // console.log(state)
+  const onClick = (data) => {
+    dispatchProduct({
+      type: "PRODUCT",
+      payload: {
+        data: state
+      },
+    })
+    history.push(`/product/${state.id}`)
+  }
   
   useEffect(() => {
     setState({
@@ -39,7 +52,7 @@ const ProductCard = (props) => {
 
   return (
     <div className="ProductCard">
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "18rem", cursor: "pointer" }} onClick={onClick}>
         <Card.Img variant="top" src={state.img} />
         <Card.Body>
           <Card.Title className="title">{state.name}</Card.Title>

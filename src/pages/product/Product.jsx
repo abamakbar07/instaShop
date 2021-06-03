@@ -103,6 +103,7 @@ const Product = () => {
               {state.tableData.map((post) => (
                 <ProductCard
                 key={post.id}
+                  id={post.id}
                   media_type={post.media_type}
                   img={
                     post.media_type === "VIDEO"
