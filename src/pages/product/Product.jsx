@@ -4,7 +4,6 @@ import ProductCard from '../components/productcard/ProductCard'
 import './product.css'
 import ReactPaginate from 'react-paginate'
 import { ProductContext } from '../../components/context/ProductContext'
-import { GetDataProduct } from '../../config/functions/product'
 
 const Product = () => {
   const [product, dispatchProduct] = useContext(ProductContext)
@@ -62,17 +61,6 @@ const Product = () => {
 
     setRefresh(refresh + 1);
   }
-
-  useEffect(() => {
-    GetDataProduct().then((data) => {
-      dispatchProduct({
-          type: "GET_PRODUCTS",
-          payload: {
-            data,
-          }
-      })
-    })
-  }, [])
 
   useEffect(() => getData(), [product])
 

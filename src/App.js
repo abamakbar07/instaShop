@@ -4,9 +4,29 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Navigationbar from './pages/components/navigationbar/Navigationbar'
 import Product from './pages/product/Product';
 import ProductDetail from './pages/productDetail/ProductDetail';
-// import Admin from './pages/admin/Admin';
+import { useContext, useEffect } from 'react';
+import { ProductContext } from './components/context/ProductContext';
+import { GetDataProduct } from './config/functions/product';
 
 function App() {
+  const [product, dispatchProduct] = useContext(ProductContext)
+  useEffect(() => {
+      GetDataProduct().then((data) => {
+         dispatchProduct({
+            type: "GET_PRODUCTS",
+            payload: {
+               data,
+            }
+         })
+      })
+
+      if (product.productDetail) {
+         dispatchProduct({
+            type: "CLEAR_PRODUCT_DETAIL",
+         })
+      }
+  }, [])
+  
   return (
     <Router>
 

@@ -25,7 +25,6 @@ const reducer = (state, action) => {
       state.products[index].tag = data.tag
       return {
         ...state,
-        // products: index,
       }
     case "CLEAR_PRODUCT_DETAIL":
       return {

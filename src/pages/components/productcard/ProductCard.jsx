@@ -18,8 +18,6 @@ const ProductCard = (props) => {
     tag: []
   })
 
-  console.log(product)
-
   const desc = props.desc
   const descSplit = desc.split('----------')
   const content = descSplit[1]
@@ -30,7 +28,7 @@ const ProductCard = (props) => {
     return x.substring(x.search(" ")).slice(1, -1);
   }
 
-  const onClick = (data) => {
+  const onClick = () => {
     dispatchProduct({
       type: "SET_PRODUCT_DETAIL",
       payload: {
@@ -52,25 +50,7 @@ const ProductCard = (props) => {
       tag: tag.map((data) => data.slice(0, -1)),
     });
 
-    dispatchProduct({
-      type: "SET_DETAIL_IN_ALLPRODUK",
-      payload: {
-        detail: state
-      }
-    })
-
-    console.log(product)
-
   }, [])
-
-  // useEffect(() => {
-  //   dispatchProduct({
-  //     type: "SET_DETAIL_IN_ALLPRODUK",
-  //     payload: {
-  //       detail: state
-  //     }
-  //   })
-  // }, [state])
 
   return (
     <div className="ProductCard">
