@@ -18,6 +18,8 @@ const ProductCard = (props) => {
     tag: []
   })
 
+  console.log(product)
+
   const desc = props.desc
   const descSplit = desc.split('----------')
   const content = descSplit[1]
@@ -35,6 +37,7 @@ const ProductCard = (props) => {
         productDetail: state
       },
     })
+
     history.push(`/product/${state.id}`)
   }
   
@@ -48,7 +51,26 @@ const ProductCard = (props) => {
       desc: descSplit[0],
       tag: tag.map((data) => data.slice(0, -1)),
     });
+
+    dispatchProduct({
+      type: "SET_DETAIL_IN_ALLPRODUK",
+      payload: {
+        detail: state
+      }
+    })
+
+    console.log(product)
+
   }, [])
+
+  // useEffect(() => {
+  //   dispatchProduct({
+  //     type: "SET_DETAIL_IN_ALLPRODUK",
+  //     payload: {
+  //       detail: state
+  //     }
+  //   })
+  // }, [state])
 
   return (
     <div className="ProductCard">

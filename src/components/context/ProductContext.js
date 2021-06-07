@@ -19,6 +19,14 @@ const reducer = (state, action) => {
         ...state,
         productDetail: action.payload.productDetail
       };
+    case "SET_DETAIL_IN_ALLPRODUK":
+      var data = action.payload.detail
+      var index = state.products.map(e => e.id).indexOf(data.id)
+      state.products[index].tag = data.tag
+      return {
+        ...state,
+        // products: index,
+      }
     case "CLEAR_PRODUCT_DETAIL":
       return {
         ...state,
