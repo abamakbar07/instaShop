@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Container, Navbar } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { CartContext } from '../../../components/context/CartContext'
 import { ProductContext } from '../../../components/context/ProductContext'
 import { ButtonPrimary } from '../Button'
 import './navigationbar.css'
@@ -8,10 +9,11 @@ import './navigationbar.css'
 const Navigationbar = () => {
   const history = useHistory()
   const [login, setLogin] = useState(false)
+  const [cart] = useContext(CartContext)
   const [product] = useContext(ProductContext)
   useEffect(() => {
     console.log(product)
-    
+    console.log(cart)
   }, [product])
   return (
     <div className="NavigationBar">
