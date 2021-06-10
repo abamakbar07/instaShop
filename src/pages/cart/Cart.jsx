@@ -1,9 +1,13 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
+import './cart.css'
 
 const Cart = () => {
    return (
       <div className="Cart">
-         CART
+         <Container>
+            Cart
+         </Container>
       </div>
    )
 }

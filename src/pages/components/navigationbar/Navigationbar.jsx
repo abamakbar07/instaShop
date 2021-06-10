@@ -14,26 +14,35 @@ const Navigationbar = () => {
     
   }, [product])
   return (
-    <div className="bg-transparent">
-      <Container className="NavigationBar">
-        <Navbar>
+    <div className="NavigationBar">
+      <Container className="Container">
+        <Navbar expand="lg">
           <div onClick={() => history.push("/")}>
             <Navbar.Brand>INSTASHOP</Navbar.Brand>
           </div>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            {login ? (
-              <Navbar.Text>
-                <div onClick={() => history.push("/product")}>
-                  Signed in as: <span>Mark Otto</span>
-                </div>
-              </Navbar.Text>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <div className="me-auto ml-auto">
+              {login ? (
+                <>
+                  <Navbar.Text className="mr-5">
+                    <div onClick={() => history.push("/product")}>
+                      Product
+                    </div>
+                  </Navbar.Text>
+                  <Navbar.Text>
+                    <div onClick={() => history.push("/cart")}>
+                      Cart
+                    </div>
+                    </Navbar.Text>
+                  </>
             ) : (
               <ButtonPrimary text="Login" onClick={() => setLogin(!login)} />
               // <Button varian="primary" onClick={() => setLogin(!login)}>
               //   LOGIN
               // </Button>
-            )}
+              )}
+              </div>
           </Navbar.Collapse>
         </Navbar>
       </Container>
