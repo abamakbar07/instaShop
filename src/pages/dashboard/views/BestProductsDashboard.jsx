@@ -1,12 +1,14 @@
-import React from 'react'
-import { CardColumns, Col, Container, Row } from 'react-bootstrap'
+import { useContext } from 'react'
+import { CardColumns, Col, Container } from 'react-bootstrap'
 import BestProductsCard from '../../components/bestproductscard/BestProductsCard'
-import best1 from '../../../assets/4.png'
-import best2 from '../../../assets/7.png'
+import { ProductContext } from '../../../components/context/ProductContext'
 
 
-const BestProductsDashboard = (props) => {
-  const products = props.products
+const BestProductsDashboard = () => {
+  const [product] = useContext(ProductContext)
+  const bestProducts = product.bestProducts
+  console.log(bestProducts)
+
   return (
     <div className="BestProductsDashboard">
       <div className="Border">
@@ -14,24 +16,13 @@ const BestProductsDashboard = (props) => {
           <div className="title text-center p-3">Best Products</div>
           <Container>
             <CardColumns>
-              <BestProductsCard
-                title="Produk Pertama"
-                desc="Some quick example text to build on the card title and make up the
-                    bulk of the card's content."
-                img={best1}
-              />
-              <BestProductsCard
-                title="Second Product"
-                desc="Some quick example text to build on the card title and make up the
-                    bulk of the card's content."
-                img={best2}
-              />
-              <BestProductsCard
-                title="Atsaltun prod"
-                desc="Some quick example text to build on the card title and make up the
-                    bulk of the card's content."
-                img={best1}
-              />
+              {bestProducts.map((data) => (
+                <BestProductsCard
+                title={data.name}
+                desc={data.desc}
+                img={data.img}
+                />
+              ))}
             </CardColumns>
           </Container>
         </Col>

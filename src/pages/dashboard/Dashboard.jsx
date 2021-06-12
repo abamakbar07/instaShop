@@ -39,8 +39,8 @@ const Dashboard = () => {
                detail,
             }
          })
-
       }
+
    }
 
    useEffect(() => {
@@ -60,7 +60,7 @@ const Dashboard = () => {
    return (
      <div className="Dashboard">
         <HeaderDashboard />
-        <BestProductsDashboard products={product.products} />
+        <BestProductsDashboard />
      </div>
    );
 }

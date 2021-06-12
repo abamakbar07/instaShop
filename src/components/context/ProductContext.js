@@ -4,6 +4,7 @@ export const ProductContext = createContext();
 
 const initialState = {
   products: [],
+  bestProducts: [],
   productDetail: null,
 };
 
@@ -23,13 +24,17 @@ const reducer = (state, action) => {
       var data = action.payload.detail
       var index = state.products.map(e => e.id).indexOf(data.id)
       state.products[index].tag = data.tag
+      data.tag.forEach((x) => {
+        if (x === "bes") state.bestProducts.push(data)
+      })
       return {
         ...state,
       }
     case "CLEAR_PRODUCT_DETAIL":
       return {
         ...state,
-        productDetail: null
+        productDetail: null,
+        bestProducts: []
       }
     default:
       throw new Error();
