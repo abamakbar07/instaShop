@@ -58,6 +58,7 @@ exports.register = async (req, res) => {
 
    newUser.save()
       .then(() => res.json({
+         status: "Success",
          message: "Account successfully added!",
          data: {
             name,
@@ -66,7 +67,8 @@ exports.register = async (req, res) => {
          }
       }))
       .catch(err => res.status(400).json({
+         status: "Failed",
+         "message": "Error creating account",
          "error": err,
-         "message": "Error creating account"
       }))
 }  
