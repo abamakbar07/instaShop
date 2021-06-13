@@ -53,7 +53,7 @@ const ProductDetail = () => {
                                     }
                                  >
                                     <>
-                                       <ButtonPrimary text="Added to cart" onClick={() => console.log("wadidaw")} />
+                                       <ButtonPrimary className="disabled" text="Added to cart" onClick={() => console.log("wadidaw")} />
                                     </>
                                  </OverlayTrigger>
                                  ) : (
