@@ -7,7 +7,6 @@ import { ProductContext } from '../../../components/context/ProductContext'
 const BestProductsDashboard = () => {
   const [product] = useContext(ProductContext)
   const bestProducts = product.bestProducts
-  console.log(bestProducts)
 
   return (
     <div className="BestProductsDashboard">

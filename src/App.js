@@ -12,20 +12,21 @@ import Cart from './pages/cart/Cart';
 function App() {
    const [product, dispatchProduct] = useContext(ProductContext)
    useEffect(() => {
-         GetDataProduct().then((data) => {
-            dispatchProduct({
-               type: "GET_PRODUCTS",
-               payload: {
-                  data,
-               }
-            })
+      GetDataProduct().then((data) => {
+         dispatchProduct({
+            type: "GET_PRODUCTS",
+            payload: {
+               data,
+            }
          })
+      })
 
-         if (product.productDetail) {
-            dispatchProduct({
-               type: "CLEAR_PRODUCT_DETAIL",
-            })
-         }
+      if (product.productDetail) {
+         dispatchProduct({
+         type: "CLEAR_PRODUCT_DETAIL",
+         })
+      }
+
    }, [])
    
    return (

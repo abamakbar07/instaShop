@@ -10,7 +10,15 @@ const Navigationbar = () => {
   const history = useHistory()
   const [login, setLogin] = useState(false)
   const [cart] = useContext(CartContext)
-  const [product] = useContext(ProductContext)
+  const [product, dispatchProduct] = useContext(ProductContext)
+
+  const homeButton = () => {
+    dispatchProduct({
+      type: "CLEAR_PRODUCT_DETAIL",
+    })
+    history.push("/")
+  }
+
   useEffect(() => {
     console.log(product)
     console.log(cart)
@@ -19,7 +27,7 @@ const Navigationbar = () => {
     <div className="NavigationBar">
       <Container className="Container">
         <Navbar expand="lg">
-          <div onClick={() => history.push("/")}>
+          <div onClick={homeButton}>
             <Navbar.Brand>INSTASHOP</Navbar.Brand>
           </div>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
